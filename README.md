@@ -378,7 +378,7 @@ Verás:
 
 Running on http://127.0.0.1:5000
 
-Ahora sí debe cargar el template en el buscador.
+## Debe cargar el template en el buscador en con estilo CSS en HTML donde podras introducir los números y ver como se actualiza todo al momento.
 
 ### O bien desde terminal ejecuta:
 Ejemplo
