@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>First100Set • Número faltante</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+  <main class="container">
+    <header class="header">
+      <div class="badge">Prueba técnica • Sección 2</div>
+      <h1>Calcular el número faltante</h1>
+      <p class="subtitle">
+        Ingresa un número del <strong>1 al 100</strong> para extraerlo del conjunto y calcular cuál falta.
+      </p>
+    </header>
+
+    <section class="card">
+      <form id="extractForm" method="POST" action="{{ url_for('extract_form') }}" novalidate>
+        <label for="number">Número a extraer</label>
+
+        <div class="inputRow">
+          <input
+            id="number"
+            name="number"
+            type="number"
+            inputmode="numeric"
+            min="1"
+            max="100"
+            placeholder="Ej. 45"
+            required
+            value="{{ last_value if last_value is not none else '' }}"
+          />
+          <button type="submit">Extraer</button>
+        </div>
+
+        <p class="help">
+          Reglas: debe ser entero, mayor o igual a 1 y menor o igual a 100.
+        </p>
+
+        {% if error %}
+          <div class="alert alert-error">
+            <strong>Error:</strong> {{ error }}
+          </div>
+        {% endif %}
+
+        {% if result %}
+          <div class="alert alert-ok">
+            <div><strong>Número extraído:</strong> {{ result.extracted }}</div>
+            <div><strong>Número faltante calculado:</strong> {{ result.missing }}</div>
+          </div>
+        {% endif %}
+      </form>
+    </section>
+
+    <section class="card">
+      <h2>Estado actual</h2>
+      <p class="muted">
+        Este demo mantiene el estado en memoria: cada extracción quita un número del conjunto.
+        Si reinicias la app, se reinicia el conjunto.
+      </p>
+
+      <div class="grid">
+        <div class="stat">
+          <div class="statLabel">Números restantes</div>
+          <div class="statValue">{{ remaining }}</div>
+        </div>
+        <div class="stat">
+          <div class="statLabel">Faltante actual</div>
+          <div class="statValue">{{ missing_now }}</div>
+        </div>
+      </div>
+
+      <form method="POST" action="{{ url_for('reset_set') }}">
+        <button class="btnSecondary" type="submit">Reiniciar conjunto (1..100)</button>
+      </form>
+    </section>
+
+    <footer class="footer">
+      <span>Hecho con Flask • HTML/CSS</span>
+    </footer>
+  </main>
+
+  <script>
+    // Validación en cliente (rápida y amigable). Aun así, el servidor valida.
+    const form = document.getElementById("extractForm");
+    form.addEventListener("submit", (e) => {
+      const input = document.getElementById("number");
+      const raw = input.value;
+
+      // Reglas: entero 1..100
+      const n = Number(raw);
+      const isInt = Number.isInteger(n);
+
+      if (!raw || !isInt || n < 1 || n > 100) {
+        e.preventDefault();
+        alert("Ingresa un número entero entre 1 y 100.");
+        input.focus();
+      }
+    });
+  </script>
+</body>
+</html>

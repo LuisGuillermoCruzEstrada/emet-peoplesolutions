@@ -1,4 +1,20 @@
-### Paso 0 — Asegúrate de estar en la raíz del proyecto
+# Prueba Técnica de Ingeniería de Datos
+
+Este proyecto implementa un pipeline completo de procesamiento de datos utilizando **Python, PostgreSQL y Docker** para analizar un conjunto de datos de transacciones.
+
+El sistema realiza las siguientes etapas:
+
+- Carga de datos desde un archivo CSV
+- Limpieza y validación de datos
+- Normalización en tablas relacionales
+- Extracción de datos a formatos analíticos (CSV y Parquet)
+- Transformación al esquema solicitado
+- Creación de vistas SQL para análisis de transacciones
+
+El objetivo del proyecto es demostrar prácticas comunes en **ingeniería de datos**, como la construcción de pipelines reproducibles, modelado relacional, validación de calidad de datos y consultas analíticas.
+
+
+###  Asegúrate de estar en la raíz del proyecto
 
 Levanta los contenedores
 
@@ -6,7 +22,7 @@ Levanta los contenedores
 docker compose up -d
 ```
 
-### 1 - Verifica que todo esté arriba
+### Verifica que todo esté arriba
 ```
 docker ps
 ```
@@ -338,3 +354,47 @@ SELECT * FROM vw_daily_paid_total_by_company LIMIT 10;
 ```
 
 Debe mostrar filas (con totales) para ambos casos
+
+# Sección 2: Creación de una API
+
+Objetivo: Creación e implementación de una aplicación
+
+Problema: Calcular el numero faltante de un conjunto de los primeros 100 números naturales del cual se extrajo uno. 
+
+Especificaciones:
+- La aplicación debe de implementarse en el lenguaje de acuerdo con el perfil
+- Se debe de implementar una clase que represente al conjunto de los primero 100 números
+- La clase implementada debe de tener el método Extract para extraer un cierto número deseado
+- La clase implementada debe de poder calcular que numero se extrajo y presentarlo
+- Debe de incluir validación del input de datos (numero, número menor de 100)
+- La aplicación debe de poder ejecutarse con un argumento introducido por el usuario que haga uso de nuestra clase y muestre que pudo calcular que se extrajo ese número
+
+## — Ejecutar
+```
+python src/run_api.py
+```
+
+Verás:
+
+Running on http://127.0.0.1:5000
+
+Ahora sí debe cargar el template en el buscador.
+
+### O bien desde terminal ejecuta:
+Ejemplo
+
+```
+python src/run_cli.py 45
+```
+
+### Probar validaciones (para evidenciar que cumples el requisito)
+
+Prueba:
+
+```
+python src/run_cli.py
+python src/run_cli.py hola
+python src/run_cli.py 0
+python src/run_cli.py 101
+python src/run_cli.py 45
+```
