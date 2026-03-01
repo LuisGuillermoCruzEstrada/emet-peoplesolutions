@@ -398,3 +398,10 @@ python src/run_cli.py 0
 python src/run_cli.py 101
 python src/run_cli.py 45
 ```
+
+### Ejecutar las pruebas unitarias
+
+En tu proyecto:
+```
+pytest -v
+```
