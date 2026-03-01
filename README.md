@@ -1,6 +1,6 @@
 # Prueba Técnica de Ingeniería de Datos
 
-Este proyecto implementa un pipeline completo de procesamiento de datos utilizando ** Python 3.11, PostgreSQL y Docker** para analizar un conjunto de datos de transacciones.
+Este proyecto implementa un pipeline completo de procesamiento de datos utilizando ** Python 3.11.0, PostgreSQL y Docker** para analizar un conjunto de datos de transacciones.
 
 El sistema realiza las siguientes etapas:
 
