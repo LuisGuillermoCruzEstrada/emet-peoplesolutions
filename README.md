@@ -14,9 +14,39 @@ El sistema realiza las siguientes etapas:
 El objetivo del proyecto es demostrar prácticas comunes en **ingeniería de datos**, como la construcción de pipelines reproducibles, modelado relacional, validación de calidad de datos y consultas analíticas.
 
 
-###  Asegúrate de estar en la raíz del proyecto
+#  Asegúrate de estar en la raíz del proyecto
 
-Levanta los contenedores
+
+Configuración del entorno
+
+Para facilitar la ejecución del proyecto durante la evaluación de la prueba técnica, el archivo .env se incluye directamente en el repositorio.
+
+Esto permite que el evaluador pueda ejecutar el proyecto sin necesidad de crear manualmente las variables de entorno.
+
+⚠️ Nota importante:
+En entornos de producción no se recomienda incluir archivos .env en el repositorio, ya que pueden contener credenciales sensibles.
+La práctica correcta es utilizar variables de entorno seguras o servicios de gestión de secretos.
+
+En este caso se ha incluido únicamente para simplificar la ejecución del proyecto.
+
+
+## Crear el archivo .env si no lo tiene
+
+En la carpeta raíz del proyecto crea un archivo llamado:
+```
+.env
+```
+Dentro del archivo agrega las siguientes variables de entorno:
+
+- DB_HOST=localhost
+- DB_PORT=5432
+- DB_NAME=pt_db
+- DB_USER=pt_user
+- DB_PASSWORD=pt_pass
+
+Estas variables son utilizadas por el módulo de conexión a base de datos (db.py) para establecer la conexión con PostgreSQL
+
+### Levanta los contenedores
 
 ```
 docker compose up -d
@@ -33,7 +63,7 @@ Deberías ver:
 
 - pt_adminer
 
-### 2 - (Opcional pero útil) Entra a Adminer
+###  (Opcional pero útil) Entra a Adminer
 
 Abre en tu navegador:
 
@@ -56,7 +86,7 @@ Y conéctate así:
 Verás que todavía no hay tablas pero esas crean a continuación
 
 
-### 3 - Crear su propio venv
+### Crear su propio venv
 windows:
 ```
 py -3 -m venv .venv
