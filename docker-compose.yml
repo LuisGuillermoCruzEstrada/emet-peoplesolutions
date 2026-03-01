@@ -1,0 +1,23 @@
+services:
+  db:
+    image: postgres:16
+    container_name: pt_postgres
+    environment:
+      POSTGRES_DB: pt_db
+      POSTGRES_USER: pt_user
+      POSTGRES_PASSWORD: pt_pass
+    ports:
+      - "5432:5432"
+    volumes:
+      - pt_pgdata:/var/lib/postgresql/data
+
+  adminer:
+    image: adminer:4
+    container_name: pt_adminer
+    ports:
+      - "8080:8080"
+    depends_on:
+      - db
+
+volumes:
+  pt_pgdata:
